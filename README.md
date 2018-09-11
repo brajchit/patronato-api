@@ -6,3 +6,8 @@
 - update app.js to es6 (not remove `next` in `//herror handler`)
 - uddate www to es6
 - add debug script to package.json
+
+- install mongoose,chalk and dotenv-safe(similar to dotenv but ensure variables)
+- add `.env` and `.env.example` files 
+- add config.js that load from `.env` variables
+- connect mongoose in app.js from `.env` config

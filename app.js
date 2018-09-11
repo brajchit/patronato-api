@@ -3,11 +3,24 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const chalk = require('chalk');
+const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const config = require('./config');
 
 const app = express();
+
+/**
+ * useNewUrlParser is required to latest versions of mongoose
+ */
+mongoose.connect(config.mongoUri, { useNewUrlParser: true })
+  .then(() => console.log(chalk.green(`mongodb connected: ${config.mongoUri}!`)))
+  .catch((err) => {
+    console.error(chalk.red(`error connecting db: ${config.mongoUri}`));
+    console.error(chalk.red(`error : ${err}`));
+  });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
