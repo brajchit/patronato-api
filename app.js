@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const chalk = require('chalk');
 const mongoose = require('mongoose');
+const debug = require('debug')('aquasolutions-rest-api:server');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -20,6 +21,7 @@ mongoose.connect(config.mongoUri, { useNewUrlParser: true })
   .catch((err) => {
     console.error(chalk.red(`error connecting db: ${config.mongoUri}`));
     console.error(chalk.red(`error : ${err}`));
+    debug(`error : ${err}`);
   });
 
 // view engine setup
@@ -48,7 +50,14 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  // res.render('error');
+
+  res.json({
+    status: err.status,
+    message: err.message,
+    error: res.locals.error.stack,
+  });
+  next();
 });
 
 module.exports = app;
