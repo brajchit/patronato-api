@@ -1,4 +1,5 @@
 ## Aquasolutions API RESTful
+# initial setups
 - express-generator base
 - add nodemon and add script in package.json
 - add `eslint --init` with general installed (Airbnb standard)
