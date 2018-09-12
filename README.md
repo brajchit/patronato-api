@@ -19,3 +19,8 @@
 - add mongoose-gen REST CRUD company example
 - add controller into routes as middleware
 - update controller and model es6
+
+
+# next possible bugs
+- when a category.code is updated, then subcategories codes should be updateds
+-

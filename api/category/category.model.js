@@ -15,7 +15,11 @@ const CategorySchema = new Schema({
     ref: 'Category',
     default: null,
   },
-  subcategories: [],
+  parentCode: {
+    type: String,
+    default: null,
+  },
+  subcategories: [], // only for runtime populate
 });
 
 module.exports = mongoose.model('Category', CategorySchema);
