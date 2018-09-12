@@ -15,3 +15,7 @@
 
 - add a path '/err' to test //error handler with custon error
 - update `//error handler` to respond json instead of view, (API RESTful)
+
+- add mongoose-gen REST CRUD company example
+- add controller into routes as middleware
+- update controller and model es6
