@@ -1,7 +1,9 @@
 const express = require('express');
 const createError = require('http-errors');
-const companyRouter = require('./company.router');
+const companyRouter = require('../api/company/company.router');
 const categoryRouter = require('../api/category/category.router');
+// const productRouter = require('../api/product/product.router');
+// const productInstanceRouter = require('../api/productInstance/productInstance.router');
 
 const router = express.Router();
 
