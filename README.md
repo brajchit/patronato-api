@@ -24,3 +24,7 @@
 # next possible bugs
 - when a category.code is updated, then subcategories codes should be updateds
 -
+
+
+# questions
+- a product could be store without units or packagin

@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const chalk = require('chalk');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const debug = require('debug')('aquasolutions-rest-api:server');
 
@@ -22,6 +23,9 @@ mongoose.connect(config.mongoUri, { useNewUrlParser: true })
     console.error(chalk.red(`error : ${err}`));
     debug(`error : ${err}`);
   });
+
+// enable CORS - Cross Origin Resource Sharing
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
