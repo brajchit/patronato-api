@@ -38,8 +38,8 @@ module.exports = {
           }).catch((subCatErr) => {
             next(createError(500, subCatErr));
           });
-      }).catch((e) => {
-        next(createError(500, e));
+      }).catch((err) => {
+        next(createError(500, err));
       });
   },
 
@@ -57,8 +57,8 @@ module.exports = {
 
     Category.save()
       .then(savedCategory => res.status(201).json(savedCategory))
-      .catch((e) => {
-        next(createError(500, e));
+      .catch((err) => {
+        next(createError(500, err));
       });
   },
 
@@ -84,8 +84,8 @@ module.exports = {
           .catch((saveErr) => {
             next(createError(500, saveErr));
           });
-      }).catch((e) => {
-        next(createError(500, e));
+      }).catch((err) => {
+        next(createError(500, err));
       });
   },
 
@@ -97,8 +97,8 @@ module.exports = {
     // CategoryModel.findOneAndDelete({ _id: id }, (err, deletedCategory) => {
     CategoryModel.remove({ _id: id })
       .then(deletedCategory => res.status(204).json(deletedCategory))
-      .catch((e) => {
-        next(createError(500, e));
+      .catch((err) => {
+        next(createError(500, err));
       });
   },
 };
