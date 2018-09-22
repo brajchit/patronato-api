@@ -52,7 +52,7 @@ module.exports = {
       name: req.body.name,
       description: req.body.description,
       farms: req.body.farms,
-      werehouses: req.body.werehouses,
+      warehouses: req.body.warehouses,
       rootUser: req.body.rootUser,
     });
 
@@ -92,7 +92,7 @@ module.exports = {
       Company.name = req.body.name || Company.name;
       Company.description = req.body.description || Company.description;
       Company.farms = req.body.farms || Company.farms;
-      Company.werehouses = req.body.werehouses || Company.werehouses;
+      Company.warehouses = req.body.warehouses || Company.warehouses;
       Company.rootUser = req.body.rootUser || Company.rootUser;
 
       Company.save((saveErr, savedCompany) => {
