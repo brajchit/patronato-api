@@ -1,14 +1,15 @@
 {
-  "name": "aquasolutions-rest-api",
+  "name": "aquasolutions-api-rest",
   "version": "0.1.0",
   "private": true,
   "description": "SaaS inventory and production module for shrimp farms, API RESTful",
   "author": "Branny Chito C.",
   "repository": "",
   "scripts": {
-    "start": "nodemon -i \"*.test.js\" ./bin/www",
-    "start2": "node ./bin/www",
-    "debug": "DEBUG=aquasolutions-rest-api:* npm start"
+    "start": "nodemon ./bin/www",
+    "start:no-test": "nodemon -i \"*.test.js\" ./bin/www",
+    "production": "NODE_ENV=production node ./bin/www",
+    "debug": "DEBUG=aqs* nodemon ./bin/www"
   },
   "dependencies": {
     "chalk": "^2.4.1",

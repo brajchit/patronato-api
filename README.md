@@ -25,6 +25,11 @@
 - when a category.code is updated, then subcategories codes should be updateds
 -
 
+# next possible issues
+- when DB can't connect but req, res is on listening
+-
+
 
 # questions
 - a product could be store without units or packagin
+  - resp: store with packaging
