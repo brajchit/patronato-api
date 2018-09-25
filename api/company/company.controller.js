@@ -1,52 +1,45 @@
+const createError = require('http-errors');
 const CompanyModel = require('./company.model');
 
 /**
  * CompanyController.js
  *
- * @description :: Server-side logic for managing Companys.
+ * @description :: Server-side logic for managing Companies.
  */
 module.exports = {
 
   /**
    * CompanyController.list()
    */
-  list: (req, res) => {
-    CompanyModel.find(req.query.where, req.query.fields, req.query.sort, (err, Companys) => {
-      if (err) {
-        return res.status(500).json({
-          message: 'Error when getting Company.',
-          error: err,
-        });
-      }
-      return res.json(Companys);
-    });
+  list: (req, res, next) => {
+    CompanyModel.find(req.query.where, req.query.fields, req.query.sort)
+      .then(Companies => res.json(Companies))
+      .catch((err) => {
+        next(createError(500, err));
+      });
   },
 
   /**
    * CompanyController.show()
    */
-  show: (req, res) => {
+  show: (req, res, next) => {
     const { id } = req.params;
-    CompanyModel.findOne({ _id: id }, (err, Company) => {
-      if (err) {
-        return res.status(500).json({
-          message: 'Error when getting Company.',
-          error: err,
-        });
-      }
-      if (!Company) {
-        return res.status(404).json({
-          message: 'No such Company',
-        });
-      }
-      return res.json(Company);
-    });
+    // CompanyModel.findOne({ _id: id }, (err, Company) => {
+    CompanyModel.findOne({ _id: id })
+      .then((Company) => {
+        if (!Company) {
+          return next(createError(404, 'No such Company'));
+        }
+        return res.json(Company);
+      }).catch((err) => {
+        next(createError(500, err));
+      });
   },
 
   /**
    * CompanyController.create()
    */
-  create: (req, res) => {
+  create: (req, res, next) => {
     const Company = new CompanyModel({
       businessId: req.body.businessId,
       name: req.body.name,
@@ -56,71 +49,50 @@ module.exports = {
       rootUser: req.body.rootUser,
     });
 
-    Company.save((err, savedCompany) => {
-      if (err) {
-        return res.status(500).json({
-          message: 'Error when creating Company',
-          error: err,
-        });
-      }
-      return res.status(201).json(savedCompany);
-    });
+    Company.save()
+      .then(savedCompany => res.status(201).json(savedCompany))
+      .catch((err) => {
+        next(createError(500, err));
+      });
   },
 
   /**
    * CompanyController.update()
    */
-  update: (req, res) => {
+  update: (req, res, next) => {
     const { id } = req.params;
-    CompanyModel.findOne({
-      _id: id,
-    }, (err, Company) => {
-      if (err) {
-        return res.status(500).json({
-          message: 'Error when getting Company',
-          error: err,
-        });
-      }
-      if (!Company) {
-        return res.status(404).json({
-          message: 'No such Company',
-        });
-      }
-
-      // eslint-disable no-param-reassign
-      Company.businessId = req.body.businessId || Company.businessId;
-      Company.name = req.body.name || Company.name;
-      Company.description = req.body.description || Company.description;
-      Company.farms = req.body.farms || Company.farms;
-      Company.warehouses = req.body.warehouses || Company.warehouses;
-      Company.rootUser = req.body.rootUser || Company.rootUser;
-
-      Company.save((saveErr, savedCompany) => {
-        if (saveErr) {
-          return res.status(500).json({
-            message: 'Error when updating Company.',
-            error: saveErr,
-          });
+    // CompanyModel.findOne({ _id: id }, (err, Company) => {
+    CompanyModel.findOne({ _id: id })
+      .then((Company) => {
+        if (!Company) {
+          return next(createError(404, 'No such Company'));
         }
+        // eslint-disable no-param-reassign
+        Company.businessId = req.body.businessId || Company.businessId;
+        Company.name = req.body.name || Company.name;
+        Company.description = req.body.description || Company.description;
+        Company.farms = req.body.farms || Company.farms;
+        Company.warehouses = req.body.warehouses || Company.warehouses;
 
-        return res.json(savedCompany);
+        Company.save()
+          .then(savedCompany => res.status(201).json(savedCompany))
+          .catch((err) => {
+            next(createError(500, err));
+          });
+      }).catch((err) => {
+        next(createError(500, err));
       });
-    });
   },
 
   /**
    * CompanyController.remove()
    */
-  remove: (req, res) => {
+  remove: (req, res, next) => {
     const { id } = req.params;
-    CompanyModel.findByIdAndRemove(id, (err, deletedCompany) => {
-      if (err) {
-        return res.status(500).json({
-          message: 'Error when deleting the Company.',
-          error: err,
-        });
-      }
-      return res.status(204).json(deletedCompany);
-    });
+    CompanyModel.deleteOne({ _id: id })
+      .then(deletedCompany => res.status(204).json(deletedCompany))
+      .catch((err) => {
+        next(createError(500, err));
+      });
   },
 };
