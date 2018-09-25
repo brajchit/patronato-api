@@ -1,4 +1,5 @@
 const createError = require('http-errors');
+const debug = require('debug')('aqs:api');
 const CategoryModel = require('./category.model');
 
 /**
@@ -9,9 +10,12 @@ const CategoryModel = require('./category.model');
 module.exports = {
 
   /**
-   * CategoryController.list()
+   * CategoryController.list() only first level, parent null.
    */
   list: (req, res, next) => {
+    req.query.where = { parent: null };
+    debug('query where: %O', req.query);
+
     CategoryModel.find(req.query.where, req.query.fields, req.query.sort)
       .then(Categories => res.json(Categories))
       .catch((err) => {
@@ -20,7 +24,7 @@ module.exports = {
   },
 
   /**
-   * CategoryController.show()
+   * CategoryController.show() with subcategories subdocs
    */
   show: (req, res, next) => {
     const { id } = req.params;
@@ -80,7 +84,7 @@ module.exports = {
         Category.parentCode = req.body.parentCode || Category.parentCode;
 
         Category.save()
-          .then(savedCategory => res.json(savedCategory))
+          .then(savedCategory => res.status(201).json(savedCategory))
           .catch((saveErr) => {
             next(createError(500, saveErr));
           });
@@ -94,8 +98,7 @@ module.exports = {
    */
   remove: (req, res, next) => {
     const { id } = req.params;
-    // CategoryModel.findOneAndDelete({ _id: id }, (err, deletedCategory) => {
-    CategoryModel.remove({ _id: id })
+    CategoryModel.deleteOne({ _id: id })
       .then(deletedCategory => res.status(204).json(deletedCategory))
       .catch((err) => {
         next(createError(500, err));

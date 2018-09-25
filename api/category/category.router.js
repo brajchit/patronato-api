@@ -1,5 +1,5 @@
 const express = require('express');
-const chalk = require('chalk');
+const debug = require('debug')('aqs:api');
 
 const router = express.Router();
 const categoryController = require('./category.controller');
@@ -23,7 +23,7 @@ router.use((req, res, next) => {
 
   req.query = query;
 
-  console.log('req query: ', chalk.blue(JSON.stringify(query)));
+  debug('query: %O', req.query);
   next();
 });
 

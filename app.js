@@ -3,10 +3,10 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const chalk = require('chalk');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const debug = require('debug')('aquasolutions-rest-api:server');
+const debug = require('debug')('aqs');
+const error = require('debug')('aqs:error');
 
 const indexRouter = require('./routes/index');
 const config = require('./config');
@@ -17,11 +17,11 @@ const app = express();
  * useNewUrlParser is required to latest versions of mongoose
  */
 mongoose.connect(config.mongoUri, { useNewUrlParser: true })
-  .then(() => console.log(chalk.green(`mongodb connected: ${config.mongoUri}!`)))
-  .catch((err) => {
-    console.error(chalk.red(`error connecting db: ${config.mongoUri}`));
-    console.error(chalk.red(`error : ${err}`));
-    debug(`error : ${err}`);
+  .then(() => {
+    debug(`mongodb connected: ${config.mongoUri}!`);
+  }).catch((err) => {
+    error(`error connecting db: ${config.mongoUri}`);
+    error(`error : ${err}`);
   });
 
 // enable CORS - Cross Origin Resource Sharing
