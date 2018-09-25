@@ -6,7 +6,7 @@ const CategorySchema = new Schema({
   code: {
     type: String,
     required: [true, 'Category CODE is required'],
-    unique: true,
+    // unique: true,
   },
   name: String,
   detail: String,

@@ -1,6 +1,9 @@
 module.exports = {
   "extends": "airbnb-base",
   "rules": {
+    "consistent-return": [
+      "warn", // to controllers.update|create
+    ],
     "no-console": ["error", {
       allow: ["warn", "error", "log"]
     }],
