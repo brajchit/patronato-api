@@ -43,7 +43,7 @@ module.exports = {
     const Company = new CompanyModel({
       businessId: req.body.businessId,
       name: req.body.name,
-      description: req.body.description,
+      detail: req.body.detail,
       farms: req.body.farms,
       warehouses: req.body.warehouses,
       rootUser: req.body.rootUser,
@@ -70,7 +70,7 @@ module.exports = {
         // eslint-disable no-param-reassign
         Company.businessId = req.body.businessId || Company.businessId;
         Company.name = req.body.name || Company.name;
-        Company.description = req.body.description || Company.description;
+        Company.detail = req.body.detail || Company.detail;
         Company.farms = req.body.farms || Company.farms;
         Company.warehouses = req.body.warehouses || Company.warehouses;
 

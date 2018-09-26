@@ -2,15 +2,23 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
+const FarmSchema = new Schema({
+  name: String,
+  detail: String,
+});
+
 const CompanySchema = new Schema({
   businessId: {
     type: String,
     required: true,
   },
   name: String,
-  description: String,
-  farms: [],
-  warehouses: [],
+  detail: String,
+  farms: [FarmSchema],
+  warehouses: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Warehouse',
+  }],
   // rootUser: {
   //   type: Schema.Types.ObjectId,
   //   ref: 'User',
