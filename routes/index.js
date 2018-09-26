@@ -1,6 +1,7 @@
 const express = require('express');
 const createError = require('http-errors');
 const companyRouter = require('../api/company/company.router');
+const warehouseRouter = require('../api/warehouse/warehouse.router');
 const categoryRouter = require('../api/category/category.router');
 // const productRouter = require('../api/product/product.router');
 // const productInstanceRouter = require('../api/productInstance/productInstance.router');
@@ -11,6 +12,8 @@ const router = express.Router();
  * Router handler to '/companies'
  */
 router.use('/companies', companyRouter);
+
+router.use('/warehouses', warehouseRouter);
 
 router.use('/categories', categoryRouter);
 
