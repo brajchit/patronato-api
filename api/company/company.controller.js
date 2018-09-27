@@ -20,17 +20,46 @@ module.exports = {
   },
 
   /**
+   * CompanyController.listFarms()
+   */
+  listFarms: (req, res, next) => {
+    CompanyModel.find()
+      .then((Companies) => {
+        const farms = [];
+        Companies.map(company => farms.push(...company.farms));
+        return res.json(farms);
+      }).catch((err) => {
+        next(createError(500, err));
+      });
+  },
+
+  /**
    * CompanyController.show()
    */
   show: (req, res, next) => {
     const { id } = req.params;
-    // CompanyModel.findOne({ _id: id }, (err, Company) => {
     CompanyModel.findOne({ _id: id })
       .then((Company) => {
         if (!Company) {
           return next(createError(404, 'No such Company'));
         }
         return res.json(Company);
+      }).catch((err) => {
+        next(createError(500, err));
+      });
+  },
+
+  /**
+   * CompanyController.showWarehouses()
+   */
+  showWarehouses: (req, res, next) => {
+    const { id } = req.params;
+    CompanyModel.findOne({ _id: id }).populate('warehouses')
+      .then((Company) => {
+        if (!Company) {
+          return next(createError(404, `No such warehouses in company: ${id}`));
+        }
+        return res.json(Company.warehouses);
       }).catch((err) => {
         next(createError(500, err));
       });

@@ -33,9 +33,19 @@ router.use((req, res, next) => {
 router.get('/', CompanyController.list);
 
 /*
+* GET FarmsAll
+*/
+router.get('/farms', CompanyController.listFarms);
+
+/*
  * GET
  */
 router.get('/:id', CompanyController.show);
+
+/*
+* GET warehouses
+*/
+router.get('/:id/warehouses', CompanyController.showWarehouses);
 
 /*
  * POST

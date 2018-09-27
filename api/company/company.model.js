@@ -5,6 +5,10 @@ const { Schema } = mongoose;
 const FarmSchema = new Schema({
   name: String,
   detail: String,
+  area: {
+    type: Number, // Has
+    require: true,
+  },
 });
 
 const CompanySchema = new Schema({
