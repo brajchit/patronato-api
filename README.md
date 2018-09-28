@@ -34,3 +34,4 @@
 - a product could be store without units or packagin?
   - resp: store with packaging
 - where set max and min stock?
+- is possible move a farm from a companyA to companyB
