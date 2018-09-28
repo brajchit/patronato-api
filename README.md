@@ -31,5 +31,6 @@
 
 
 # questions
-- a product could be store without units or packagin
+- a product could be store without units or packagin?
   - resp: store with packaging
+- where set max and min stock?
