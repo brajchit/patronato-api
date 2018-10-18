@@ -3,8 +3,8 @@ const createError = require('http-errors');
 const companyRouter = require('../api/company/company.router');
 const warehouseRouter = require('../api/warehouse/warehouse.router');
 const categoryRouter = require('../api/category/category.router');
-const productRouter = require('../api/product/product.router');
-const movementRouter = require('../api/movement/movement.router');
+// const productRouter = require('../api/product/product.router');
+// const movementRouter = require('../api/movement/movement.router');
 const bsUserRouter = require('../api/bs_users/bsUser.router');
 // const movementInstanceRouter = require('../api/productInstance/productInstance.router');
 
@@ -19,9 +19,9 @@ router.use('/warehouses', warehouseRouter);
 
 router.use('/categories', categoryRouter);
 
-router.use('/products', productRouter);
-
-router.use('/movements', movementRouter);
+// router.use('/products', productRouter);
+//
+// router.use('/movements', movementRouter);
 
 router.use('/bsusers', bsUserRouter);
 
