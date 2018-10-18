@@ -7,6 +7,7 @@ const WarehouseSchema = new Schema({
   email: String,
   phone: String,
   message: String,
+  datetime: Date,
 });
 
 module.exports = mongoose.model('BUsers', WarehouseSchema);

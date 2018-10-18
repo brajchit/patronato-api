@@ -43,9 +43,10 @@ module.exports = {
     debug('POST METHOD BODY: %O\n', req.body);
     const BUser = new BUserModel({
       name: req.body.name,
-      imail: req.body.imail,
+      email: req.body.email,
       phone: req.body.phone,
       message: req.body.message,
+      datetime: new Date(),
     });
 
     BUser.save()
