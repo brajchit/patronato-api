@@ -35,3 +35,12 @@
   - resp: store with packaging
 - where set max and min stock?
 - is possible move a farm from a companyA to companyB
+  - Hay un proceso de venta
+  - SE CREA UNA NUEVA CAMARNERA
+  - QUEDA EL HISTORICO EN LA CAMANRONERA ANTERIOR
+- Mover una piscina
+  - con y sin hisotorial
+
+- la larva llega y enseguida se siembra, entonces se hace un ingreso con la factura y enseguida siembra. que es un EGRESO.
+
+-
