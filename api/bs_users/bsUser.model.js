@@ -8,6 +8,8 @@ const WarehouseSchema = new Schema({
   phone: String,
   message: String,
   datetime: Date,
+  ip: String,
+  ips: [String],
 });
 
 module.exports = mongoose.model('BUsers', WarehouseSchema);
