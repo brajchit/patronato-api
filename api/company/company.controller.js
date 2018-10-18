@@ -59,7 +59,8 @@ module.exports = {
         if (!Company) {
           return next(createError(404, `No such warehouses in company: ${id}`));
         }
-        return res.json(Company.warehouses);
+        // return res.json(Company.warehouses); //only warehouses of a company
+        return res.json(Company); // company with warehouses embedded
       }).catch((err) => {
         next(createError(500, err));
       });
