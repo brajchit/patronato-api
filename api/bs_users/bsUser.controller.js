@@ -47,6 +47,8 @@ module.exports = {
       phone: req.body.phone,
       message: req.body.message,
       datetime: new Date(),
+      ip: req.ip,
+      ips: req.ips,
     });
 
     BUser.save()
