@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const WarehouseSchema = new Schema({
+const BSUserSchema = new Schema({
   name: String,
   email: String,
   phone: String,
@@ -12,4 +12,4 @@ const WarehouseSchema = new Schema({
   ips: [String],
 });
 
-module.exports = mongoose.model('BUsers', WarehouseSchema);
+module.exports = mongoose.model('BUsers', BSUserSchema);

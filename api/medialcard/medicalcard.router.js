@@ -2,7 +2,7 @@ const express = require('express');
 const chalk = require('chalk');
 
 const router = express.Router();
-const CompanyController = require('./company.controller.js');
+const medicalcardController = require('./medicalcard.controller');
 
 /*
  * MIDDLEWARE
@@ -30,36 +30,26 @@ router.use((req, res, next) => {
 /*
  * GET
  */
-router.get('/', CompanyController.list);
-
-/*
-* GET FarmsAll
-*/
-router.get('/farms', CompanyController.listFarms);
+router.get('/', medicalcardController.list);
 
 /*
  * GET
  */
-router.get('/:id', CompanyController.show);
-
-/*
-* GET warehouses
-*/
-router.get('/:id/warehouses', CompanyController.showWarehouses);
+router.get('/:id', medicalcardController.show);
 
 /*
  * POST
  */
-router.post('/', CompanyController.create);
+router.post('/', medicalcardController.create);
 
 /*
  * PUT
  */
-router.put('/:id', CompanyController.update);
+router.put('/:id', medicalcardController.update);
 
 /*
  * DELETE
  */
-router.delete('/:id', CompanyController.remove);
+router.delete('/:id', medicalcardController.remove);
 
 module.exports = router;

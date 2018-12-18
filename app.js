@@ -7,9 +7,21 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const debug = require('debug')('aqs');
 const error = require('debug')('aqs:error');
+// const knexClient = require('knex');
 
 const indexRouter = require('./routes/index');
 const config = require('./config');
+
+// const knex = knexClient({
+//   client: 'pg',
+//   version: '7.2',
+//   connection: {
+//     host: 'localhost',
+//     user: 'brann',
+//     password: '',
+//     database: 'myapp_test',
+//   },
+// });
 
 const app = express();
 
@@ -18,7 +30,7 @@ const app = express();
  */
 mongoose.connect(config.mongoUri, { useNewUrlParser: true })
   .then(() => {
-    debug(`mongodb connected: ${config.mongoUri}!`);
+    debug(`mongodb connected: ${config.mongoUri}`);
   }).catch((err) => {
     error(`error connecting db: ${config.mongoUri}`);
     error(`error : ${err}`);
