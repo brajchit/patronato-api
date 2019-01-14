@@ -5,7 +5,6 @@ const createError = require('http-errors');
 const categoryRouter = require('../api/category/category.router');
 // const productRouter = require('../api/product/product.router');
 // const movementRouter = require('../api/movement/movement.router');
-const bsUserRouter = require('../api/bs_users/bsUser.router');
 const medicalCardRouter = require('../api/medialcard/medicalcard.router');
 // const movementInstanceRouter = require('../api/productInstance/productInstance.router');
 
@@ -14,7 +13,6 @@ const router = express.Router();
 
 router.use('/categories', categoryRouter);
 
-router.use('/bsusers', bsUserRouter);
 
 /**
 * Router handler to '/medicalcards'
