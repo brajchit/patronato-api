@@ -1,5 +1,5 @@
 /**
- * Product-master model that will be used as product instance in inventory
+ * MedicalCard model that will be used as medicalCard instance.
  */
 const mongoose = require('mongoose');
 
@@ -7,6 +7,7 @@ const { Schema } = mongoose;
 
 const MedicalCardSchema = new Schema({
   namepaciente: String,
+  idpaciente: String,
   consulta: {
     motivo: String,
   },
@@ -35,10 +36,12 @@ const MedicalCardSchema = new Schema({
   tratamiento: {
     tratamiento: String,
   },
-  evolucionYPrescrip: {
-    evolucion: String,
-    prescrip: String,
-  },
+  evolucionYPrescrip: [{
+    datetime: Date,
+    notasEvolucion: String,
+    farmacosIndicacion: String,
+    farmacosAdmin: String,
+  }],
 });
 
 module.exports = mongoose.model('MedicalCard', MedicalCardSchema);

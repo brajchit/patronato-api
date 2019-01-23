@@ -1,16 +1,13 @@
 const express = require('express');
 const createError = require('http-errors');
-// const companyRouter = require('../api/company/company.router');
-// const warehouseRouter = require('../api/warehouse/warehouse.router');
 const categoryRouter = require('../api/category/category.router');
-// const productRouter = require('../api/product/product.router');
-// const movementRouter = require('../api/movement/movement.router');
 const medicalCardRouter = require('../api/medialcard/medicalcard.router');
-// const movementInstanceRouter = require('../api/productInstance/productInstance.router');
 
 const router = express.Router();
 
-
+/**
+ * Category API RESTful enpoints.
+ */
 router.use('/categories', categoryRouter);
 
 

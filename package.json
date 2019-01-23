@@ -1,8 +1,8 @@
 {
-  "name": "aquasolutions-api-rest",
+  "name": "MedicalCards-api-rest",
   "version": "0.1.0",
   "private": true,
-  "description": "SaaS inventory and production module for shrimp farms, API RESTful",
+  "description": "Patronato Pastaza Historias Médicas API RESTful",
   "author": "Branny Chito C.",
   "repository": "",
   "scripts": {
