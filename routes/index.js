@@ -2,6 +2,7 @@ const express = require('express');
 const createError = require('http-errors');
 const categoryRouter = require('../api/category/category.router');
 const medicalCardRouter = require('../api/medialcard/medicalcard.router');
+const tfisicaMedicalCardRouter = require('../api/tfisica_medialcard/tfisicaMedicalcard.router');
 
 const router = express.Router();
 
@@ -15,6 +16,11 @@ router.use('/categories', categoryRouter);
 * Router handler to '/medicalcards'
 */
 router.use('/medicalcards', medicalCardRouter);
+
+/**
+* Router handler to '/tfisicamedicalcards'
+*/
+router.use('/tfisicamedicalcards', tfisicaMedicalCardRouter);
 
 /* GET home page. */
 router.get('/', (req, res) => {
