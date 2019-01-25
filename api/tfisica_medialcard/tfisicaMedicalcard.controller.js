@@ -48,7 +48,8 @@ module.exports = {
       histProblemFunc: req.body.histProblemFunc,
       anamesisDolor: req.body.anamesisDolor,
       exploFisica: req.body.exploFisica,
-      tfisioterapeutico: req.body.tfisioterapeutico,
+      tfisioterap: req.body.tfisioterap,
+      seguimiento: req.body.seguimiento,
     });
     TFisicaMedicalCard.save()
       .then(savedMedicalCard => res.status(201).json(savedMedicalCard))
@@ -76,7 +77,8 @@ module.exports = {
         TFMedicalCard.histProblemFunc = req.body.histProblemFunc || TFMedicalCard.histProblemFunc;
         TFMedicalCard.anamesisDolor = req.body.anamesisDolor || TFMedicalCard.anamesisDolor;
         TFMedicalCard.exploFisica = req.body.exploFisica || TFMedicalCard.exploFisica;
-        TFMedicalCard.tfisioterapeutico = req.body.tfisioterapeutico || TFMedicalCard.tfisioterapeutico;
+        TFMedicalCard.tfisioterap = req.body.tfisioterap || TFMedicalCard.tfisioterap;
+        TFMedicalCard.seguimiento = req.body.seguimiento || TFMedicalCard.seguimiento;
 
         TFMedicalCard.save()
           .then(savedMedicalCard => res.json(savedMedicalCard))

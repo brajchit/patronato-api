@@ -6,7 +6,11 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const TFisicaMedicalCardSchema = new Schema({
-  idpaciente: String,
+  idpaciente: {
+    type: String,
+    unique: true,
+    required: [true, 'ID_Paciente is required'],
+  },
   fechahora: Date,
   consulta: {
     motivo: String,
@@ -59,7 +63,7 @@ const TFisicaMedicalCardSchema = new Schema({
     observaciones: String,
     impDiagnostica: String,
   },
-  tfisioterapeutico: {
+  tfisioterap: {
     mquimicos: {
       ultrasonido: Boolean,
       elecEstim: Boolean,
@@ -83,14 +87,19 @@ const TFisicaMedicalCardSchema = new Schema({
     },
     nota: String,
   },
+  seguimiento: [{
+    fecha: Date,
+    tratamiento: String,
+    indicaciones: String,
+  }],
 });
 
 
-// let a = {
-//   "idpaciente": "String",
-//   "fechahora": "2019-01-25T11:28:58",
+// const a = {
+//   "idpaciente": "1002",
+//   "fechahora": "2019-01-25T10:28",
 //   "consulta": {
-//     "motivo": "String",
+//     "motivo": "Gripe"
 //   },
 //   "antecedentes": {
 //     "personales": {
@@ -106,7 +115,7 @@ const TFisicaMedicalCardSchema = new Schema({
 //       "tuberculosis": true,
 //       "transfuciones": true,
 //       "accidentes": true,
-//       "otros": true,
+//       "otros": false
 //     },
 //     "familiares": {
 //       "hipertensionArterial": true,
@@ -114,33 +123,33 @@ const TFisicaMedicalCardSchema = new Schema({
 //       "infartoDelMiocardio": true,
 //       "demencia": true,
 //       "cancer": true,
-//       "otros": true,
+//       "otros": false
 //     },
-//     "descripAntYOtros": "String",
+//     "descripAntYOtros": "String"
 //   },
 //   "medUsoFrec": {
 //     "utilizacion": "String",
 //     "nombre": "String",
 //     "restricAMedic": {
 //       "resp": true,
-//       "cual": "String",
-//     },
+//       "cual": "String"
+//     }
 //   },
 //   "histProblemFunc": {
-//     "description": "String",
+//     "description": "String"
 //   },
 //   "anamesisDolor": {
 //     "duracion": "String",
-//     "escalaIntensidad": Number,
+//     "escalaIntensidad": 4,
 //     "frecuencia": "String",
 //     "horario": "String",
-//     "evolucion": "String",
+//     "evolucion": "String"
 //   },
 //   "exploFisica": {
 //     "observaciones": "String",
-//     "impDiagnostica": "String",
+//     "impDiagnostica": "String"
 //   },
-//   "tfisioterapeutico": {
+//   "tfisioterap": {
 //     "mquimicos": {
 //       "ultrasonido": true,
 //       "elecEstim": true,
@@ -148,21 +157,28 @@ const TFisicaMedicalCardSchema = new Schema({
 //       "laser": true,
 //       "nebulizacion": true,
 //       "ondasChoque": true,
-//       "parafina": true,
+//       "parafina": true
 //     },
 //     "mfisicos": {
 //       "compresQuimicas": "String",
 //       "crioterapia": "String",
 //       "masoterapai": "String",
-//       "to": "String",
+//       "to": "String"
 //     },
 //     "ejerTerapeuticos": {
 //       "activos": true,
 //       "pasivos": true,
 //       "activosAsistidos": true,
-//       "ActivosResistidos": true,
+//       "ActivosResistidos": true
 //     },
-//     "nota": "String",
-//   }
+//     "nota": "String"
+//   },
+//   "seguimiento": [
+//     {
+//       "fecha": "2019-01-25T10:28",
+//       "tratamiento": "String",
+//       "indicaciones": "String"
+//     }
+//   ]
 // }
 module.exports = mongoose.model('TFisicaMedicalCard', TFisicaMedicalCardSchema);
