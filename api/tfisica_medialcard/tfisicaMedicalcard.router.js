@@ -2,7 +2,7 @@ const express = require('express');
 const chalk = require('chalk');
 
 const router = express.Router();
-const medicalcardController = require('./medicalcard.controller');
+const tfisicaMedicalcardController = require('./tfisicaMedicalcard.controller');
 
 /*
  * MIDDLEWARE
@@ -30,26 +30,26 @@ router.use((req, res, next) => {
 /*
  * GET
  */
-router.get('/', medicalcardController.list);
+router.get('/', tfisicaMedicalcardController.list);
 
 /*
  * GET
  */
-router.get('/:id', medicalcardController.show);
+router.get('/:id', tfisicaMedicalcardController.show);
 
 /*
  * POST
  */
-router.post('/', medicalcardController.create);
+router.post('/', tfisicaMedicalcardController.create);
 
 /*
  * PUT
  */
-router.put('/:id', medicalcardController.update);
+router.put('/:id', tfisicaMedicalcardController.update);
 
 /*
  * DELETE
  */
-router.delete('/:id', medicalcardController.remove);
+router.delete('/:id', tfisicaMedicalcardController.remove);
 
 module.exports = router;
