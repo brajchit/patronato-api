@@ -1,5 +1,5 @@
 const express = require('express');
-const debug = require('debug')('aqs:api');
+const debug = require('debug')('api:api');
 
 const router = express.Router();
 const categoryController = require('./category.controller');

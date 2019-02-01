@@ -5,8 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const debug = require('debug')('aqs');
-const error = require('debug')('aqs:error');
+const debug = require('debug')('api');
+const error = require('debug')('api:error');
 // const knexClient = require('knex');
 
 const indexRouter = require('./routes/index');

@@ -9,7 +9,7 @@
     "start2": "nodemon ./bin/www",
     "start:no-test": "nodemon -i \"*.test.js\" ./bin/www",
     "production": "NODE_ENV=production node ./bin/www",
-    "start": "DEBUG=aqs* nodemon ./bin/www"
+    "start": "DEBUG=api* nodemon ./bin/www"
   },
   "dependencies": {
     "chalk": "^2.4.1",
