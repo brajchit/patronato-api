@@ -1,56 +1,52 @@
 const createError = require('http-errors');
-const TFisicaMedicalCardModel = require('./tfisicaMedicalcard.model');
+const PsicoMedicalCardModel = require('./psicoMedicalcard.model');
 
 /**
- * TerapiaFisicaMedicalCardController.js
+ * PsicologiaMedicalCardController.js
  *
- * @description :: Server-side logic for managing TFisicaMedicalCards.
+ * @description :: Server-side logic for managing PsicoMedicalCards.
  */
 module.exports = {
 
   /**
-   * TFisicaMedicalCardController.list()
+   * PsicoMedicalCardController.list()
    */
   list: (req, res, next) => {
-    TFisicaMedicalCardModel.find(req.query.where, req.query.fields, req.query.sort)
-      .then(TFisicaMedicalCards => res.json(TFisicaMedicalCards))
+    PsicoMedicalCardModel.find(req.query.where, req.query.fields, req.query.sort)
+      .then(PsicoMedicalCards => res.json(PsicoMedicalCards))
       .catch((err) => {
         next(createError(500, err));
       });
   },
 
   /**
-   * TFisicaMedicalCardController.show()
+   * PsicoMedicalCardController.show()
    */
   show: (req, res, next) => {
     const { id } = req.params;
-    TFisicaMedicalCardModel.findOne({ idpaciente: id })
-      .then((TFisicaMedicalCard) => {
-        if (!TFisicaMedicalCard) {
-          return next(createError(404, 'No such TFisicaMedicalCard'));
+    PsicoMedicalCardModel.findOne({ idpaciente: id })
+      .then((PsicoMedicalCard) => {
+        if (!PsicoMedicalCard) {
+          return next(createError(404, 'No such PsicoMedicalCard'));
         }
-        return res.json(TFisicaMedicalCard);
+        return res.json(PsicoMedicalCard);
       }).catch((err) => {
         next(createError(500, err));
       });
   },
 
   /**
-   * TFisicaMedicalCardController.create()
+   * PsicoMedicalCardController.create()
    */
   create: (req, res, next) => {
-    const TFisicaMedicalCard = new TFisicaMedicalCardModel({
+    const PsicoMedicalCard = new PsicoMedicalCardModel({
       idpaciente: req.body.idpaciente,
       fechahora: req.body.fechahora,
-      consulta: req.body.consulta,
-      antecedentes: req.body.antecedentes,
-      medUsoFrec: req.body.medUsoFrec,
-      histProblemFunc: req.body.histProblemFunc,
-      anamesisDolor: req.body.anamesisDolor,
-      exploFisica: req.body.exploFisica,
-      tfisioterapeutico: req.body.tfisioterapeutico,
+      interpretaciones: req.body.interpretaciones,
+      reactivosUsados: req.body.reactivosUsados,
+      datosRelevantes: req.body.datosRelevantes,
     });
-    TFisicaMedicalCard.save()
+    PsicoMedicalCard.save()
       .then(savedMedicalCard => res.status(201).json(savedMedicalCard))
       .catch((err) => {
         next(createError(500, err));
@@ -58,27 +54,27 @@ module.exports = {
   },
 
   /**
-   * TFisicaMedicalCardController.update()
+   * PsicoMedicalCardController.update()
    */
   update: (req, res, next) => {
     const { id } = req.params;
-    TFisicaMedicalCardModel.findOne({ idpaciente: id })
-      .then((TFMedicalCard) => {
-        if (!TFMedicalCard) {
-          return next(createError(404, 'No such TFMedicalCard'));
+    PsicoMedicalCardModel.findOne({ idpaciente: id })
+      .then((PsicoMedicalCard) => {
+        if (!PsicoMedicalCard) {
+          return next(createError(404, 'No such PsicoMedicalCard'));
         }
-        // eslint-disable no-param-reassign
-        TFMedicalCard.idpaciente = req.body.idpaciente || TFMedicalCard.idpaciente;
-        TFMedicalCard.fechahora = req.body.fechahora || TFMedicalCard.fechahora;
-        TFMedicalCard.consulta = req.body.consulta || TFMedicalCard.consulta;
-        TFMedicalCard.antecedentes = req.body.antecedentes || TFMedicalCard.antecedentes;
-        TFMedicalCard.medUsoFrec = req.body.medUsoFrec || TFMedicalCard.medUsoFrec;
-        TFMedicalCard.histProblemFunc = req.body.histProblemFunc || TFMedicalCard.histProblemFunc;
-        TFMedicalCard.anamesisDolor = req.body.anamesisDolor || TFMedicalCard.anamesisDolor;
-        TFMedicalCard.exploFisica = req.body.exploFisica || TFMedicalCard.exploFisica;
-        TFMedicalCard.tfisioterapeutico = req.body.tfisioterapeutico || TFMedicalCard.tfisioterapeutico;
+        const { interpretaciones } = req.body;
+        const { reactivosUsados } = req.body;
+        const { datosRelevantes } = req.body;
 
-        TFMedicalCard.save()
+        // eslint-disable no-param-reassign
+        PsicoMedicalCard.idpaciente = req.body.idpaciente || PsicoMedicalCard.idpaciente;
+        PsicoMedicalCard.fechahora = req.body.fechahora || PsicoMedicalCard.fechahora;
+        PsicoMedicalCard.interpretaciones = interpretaciones || PsicoMedicalCard.interpretaciones;
+        PsicoMedicalCard.reactivosUsados = reactivosUsados || PsicoMedicalCard.reactivosUsados;
+        PsicoMedicalCard.datosRelevantes = datosRelevantes || PsicoMedicalCard.datosRelevantes;
+
+        PsicoMedicalCard.save()
           .then(savedMedicalCard => res.json(savedMedicalCard))
           .catch((saveErr) => {
             next(createError(500, saveErr));
@@ -89,11 +85,11 @@ module.exports = {
   },
 
   /**
-   * TFisicaMedicalCardController.remove()
+   * PsicoMedicalCardController.remove()
    */
   remove: (req, res, next) => {
     const { id } = req.params;
-    TFisicaMedicalCardModel.deleteOne({ idpaciente: id })
+    PsicoMedicalCardModel.deleteOne({ idpaciente: id })
       .then(deletedMedicalCard => res.status(204).json(deletedMedicalCard))
       .catch((err) => {
         next(createError(500, err));
