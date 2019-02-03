@@ -12,7 +12,6 @@ module.exports = {
    * CieController.list()
    */
   list: (req, res, next) => {
-    console.log(req.query.where);
     CieModel.find(req.query.where, req.query.fields, req.query.sort)
       .then(cies => res.json(cies))
       .catch((err) => {
