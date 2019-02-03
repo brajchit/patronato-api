@@ -3,6 +3,8 @@ const createError = require('http-errors');
 const categoryRouter = require('../api/category/category.router');
 const medicalCardRouter = require('../api/medialcard/medicalcard.router');
 const tfisicaMedicalCardRouter = require('../api/tfisica_medialcard/tfisicaMedicalcard.router');
+const psicoMedicalCardRouter = require('../api/psico_medialcard/psicoMedicalcard.router');
+const cieRouter = require('../api/cie/cie.router');
 
 const router = express.Router();
 
@@ -21,6 +23,16 @@ router.use('/medicalcards', medicalCardRouter);
 * Router handler to '/tfisicamedicalcards'
 */
 router.use('/tfisicamedicalcards', tfisicaMedicalCardRouter);
+
+/**
+* Router handler to '/psicomedicalcards'
+*/
+router.use('/psicomedicalcards', psicoMedicalCardRouter);
+
+/**
+* Router handler to '/cies'
+*/
+router.use('/cies', cieRouter);
 
 /* GET home page. */
 router.get('/', (req, res) => {
