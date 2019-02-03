@@ -8,7 +8,6 @@ const { Schema } = mongoose;
 const TFisicaMedicalCardSchema = new Schema({
   idpaciente: {
     type: String,
-    unique: true,
     required: [true, 'ID_Paciente is required'],
   },
   fechahora: Date,
@@ -62,6 +61,10 @@ const TFisicaMedicalCardSchema = new Schema({
   exploFisica: {
     observaciones: String,
     impDiagnostica: String,
+    cie: {
+      code: String,
+      descrip: String,
+    },
   },
   tfisioterap: {
     mquimicos: {
@@ -147,7 +150,11 @@ const TFisicaMedicalCardSchema = new Schema({
 //   },
 //   "exploFisica": {
 //     "observaciones": "String",
-//     "impDiagnostica": "String"
+//     "impDiagnostica": "String",
+//     "cie": {
+//       "code": "COD-0001",
+//       "descrip": "Code para enfermedad de tipo Hombro"
+//     }
 //   },
 //   "tfisioterap": {
 //     "mquimicos": {
