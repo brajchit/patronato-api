@@ -1,5 +1,5 @@
 const express = require('express');
-const chalk = require('chalk');
+const debug = require('debug')('api');
 
 const router = express.Router();
 const tfisicaMedicalcardController = require('./tfisicaMedicalcard.controller');
@@ -10,11 +10,11 @@ const tfisicaMedicalcardController = require('./tfisicaMedicalcard.controller');
 router.use((req, res, next) => {
   const query = {};
 
-  if (req.query.where) query.where = JSON.parse(req.query.where);
+  if (req.query.where) query.where = req.query.where;
 
-  if (req.query.fields) query.fields = JSON.parse(req.query.fields);
+  if (req.query.fields) query.fields = req.query.fields;
 
-  if (req.query.sort) query.sort = { sort: JSON.parse(req.query.sort) };
+  if (req.query.sort) query.sort = { sort: req.query.sort };
   else query.sort = {};
 
   if (req.query.limit) query.sort.limit = Number.parseInt(req.query.limit, 10);
@@ -22,8 +22,7 @@ router.use((req, res, next) => {
   if (req.query.skip) query.sort.skip = Number.parseInt(req.query.skip, 10);
 
   req.query = query;
-
-  console.log('req query: ', chalk.blue(JSON.stringify(query)));
+  debug('req.query: %O', req.query);
   next();
 });
 

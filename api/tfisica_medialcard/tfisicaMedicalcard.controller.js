@@ -24,7 +24,7 @@ module.exports = {
    */
   show: (req, res, next) => {
     const { id } = req.params;
-    TFisicaMedicalCardModel.findOne({ idpaciente: id })
+    TFisicaMedicalCardModel.findOne({ _id: id })
       .then((TFisicaMedicalCard) => {
         if (!TFisicaMedicalCard) {
           return next(createError(404, 'No such TFisicaMedicalCard'));
@@ -63,7 +63,7 @@ module.exports = {
    */
   update: (req, res, next) => {
     const { id } = req.params;
-    TFisicaMedicalCardModel.findOne({ idpaciente: id })
+    TFisicaMedicalCardModel.findOne({ _id: id })
       .then((TFMedicalCard) => {
         if (!TFMedicalCard) {
           return next(createError(404, 'No such TFMedicalCard'));
@@ -95,7 +95,7 @@ module.exports = {
    */
   remove: (req, res, next) => {
     const { id } = req.params;
-    TFisicaMedicalCardModel.deleteOne({ idpaciente: id })
+    TFisicaMedicalCardModel.deleteOne({ _id: id })
       .then(deletedMedicalCard => res.status(204).json(deletedMedicalCard))
       .catch((err) => {
         next(createError(500, err));
