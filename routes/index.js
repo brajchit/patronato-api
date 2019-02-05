@@ -36,7 +36,7 @@ router.use('/cies', cieRouter);
 
 /* GET home page. */
 router.get('/', (req, res) => {
-  res.render('index', { title: 'Patronato API RESTful' });
+  res.render('index', { title: 'Historias_Médicas PPSSPz API RESTful' });
 });
 
 /* GET custon error to error hendler in app.js */
