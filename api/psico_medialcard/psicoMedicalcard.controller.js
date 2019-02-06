@@ -24,7 +24,7 @@ module.exports = {
    */
   show: (req, res, next) => {
     const { id } = req.params;
-    PsicoMedicalCardModel.findOne({ idpaciente: id })
+    PsicoMedicalCardModel.findOne({ _id: id })
       .then((PsicoMedicalCard) => {
         if (!PsicoMedicalCard) {
           return next(createError(404, 'No such PsicoMedicalCard'));
@@ -58,7 +58,7 @@ module.exports = {
    */
   update: (req, res, next) => {
     const { id } = req.params;
-    PsicoMedicalCardModel.findOne({ idpaciente: id })
+    PsicoMedicalCardModel.findOne({ _id: id })
       .then((PsicoMedicalCard) => {
         if (!PsicoMedicalCard) {
           return next(createError(404, 'No such PsicoMedicalCard'));
@@ -89,7 +89,7 @@ module.exports = {
    */
   remove: (req, res, next) => {
     const { id } = req.params;
-    PsicoMedicalCardModel.deleteOne({ idpaciente: id })
+    PsicoMedicalCardModel.deleteOne({ _id: id })
       .then(deletedMedicalCard => res.status(204).json(deletedMedicalCard))
       .catch((err) => {
         next(createError(500, err));
