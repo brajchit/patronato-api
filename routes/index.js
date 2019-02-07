@@ -3,6 +3,7 @@ const createError = require('http-errors');
 const categoryRouter = require('../api/category/category.router');
 const medicalCardRouter = require('../api/medialcard/medicalcard.router');
 const tfisicaMedicalCardRouter = require('../api/tfisica_medialcard/tfisicaMedicalcard.router');
+const tlengMedicalCardRouter = require('../api/tleng_medialcard/tlengMedicalcard.router');
 const psicoMedicalCardRouter = require('../api/psico_medialcard/psicoMedicalcard.router');
 const cieRouter = require('../api/cie/cie.router');
 
@@ -23,6 +24,11 @@ router.use('/medicalcards', medicalCardRouter);
 * Router handler to '/tfisicamedicalcards'
 */
 router.use('/tfisicamedicalcards', tfisicaMedicalCardRouter);
+
+/**
+* Router handler to '/tlengmedicalcards'
+*/
+router.use('/tlengmedicalcards', tlengMedicalCardRouter);
 
 /**
 * Router handler to '/psicomedicalcards'
